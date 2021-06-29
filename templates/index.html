@@ -1,0 +1,76 @@
+{% extends 'base.html'%}
+
+{% block body %}
+<div class ="content">
+
+        <h1 style="color: blue">Index</h1>
+        <p>This is an HTML file served up by Flask</p>
+
+    <form action="/" method ="POST" enctype="multipart/form-data">
+        {% if targetinput %}
+        <div>
+           <label for="target">Choose target image to upload</label>
+
+           <input type="file" id="target" name="target" onchange="readURL(this);" >
+            <img id="blah0" src="#" alt="" />
+        </div>
+        {% endif %}
+        {% if targetfilename %}
+        <div>
+            <label for="targetfile">Uploaded target image</label>
+            <img id="targetfile"src="{{ url_for('display_image', filename=targetfilename) }}">
+        </div>
+        {% endif %}
+        {% if styleinput %}
+        <div>
+           <label for="style">Choose style image to upload</label>
+           <input type="file" id="style" name="style" onchange="readURL1(this);" >
+            <img id="blah1" src="#" alt="" />
+        </div>
+        {% endif %}
+
+        {% if stylefilename %}
+	    <div>
+            <label for="stylefile">Uploaded style image</label>
+		    <img id="stylefile" src="{{ url_for('display_image', filename=stylefilename) }}">
+	    </div>
+        {% endif %}
+        {% if submitbutton %}
+        <div id="formsubmitbutton">
+            <input type="submit" name="submitter" value="Upload" onclick="ButtonClicked()">
+
+        </div>
+        {% endif %}
+
+
+        {% if resultfilename %}
+	    <div>
+            <label for="resultfile">Result image</label>
+		    <img id="resultfile" src="{{ url_for('display_image', filename=resultfilename) }}">
+	    </div>
+        {% endif %}
+
+        <div id="buttonreplacement" style="margin-left:30px; display:none;">
+            <label for="loading">Processing</label>
+            <img id="loading" src="//www.willmaster.com/images/preload.gif" alt="loading...">
+        </div>
+
+        {% if tryagainbutton %}
+        <div id="formtryagainbutton">
+            <input type="submit" name="submitter" value="Try Again" onclick="ButtonClicked()">
+
+        </div>
+        {% endif %}
+
+        {% if success %}
+        <p>{{ success }}</p>
+        {% endif %}
+
+    </form>
+</div>
+
+{% endblock %}
+
+
+
+
